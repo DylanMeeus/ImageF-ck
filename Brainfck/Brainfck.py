@@ -11,10 +11,10 @@ class Interpreter:
 
     def interpret(self):
         # count the > - < to determine memory locations
-        mem = (self.code.count('>') + self.code.count('<')) - (self.code.count('<'))
+        mem = (self.code.count('>')) # + self.code.count('<')) - (self.code.count('<'))
         # initialize memory slots
         self.memory = []
-        for m in range(mem+1):
+        for m in range(mem+1000000):
             self.memory.append(0)
 
         # run the actual code
@@ -32,14 +32,21 @@ class Interpreter:
             elif char == '-':
                 self.memory[ptr] -= 1
             elif char == '[':
-                loop_stack.append(index)
-            elif char == ']':
-                previndex = loop_stack[-1]
                 if self.memory[ptr] > 0:
-                    index = previndex
-                    continue    # next loop
-                # delete from stack
-                loop_stack.pop()
+                    loop_stack.append(index)
+                else:
+                    # ignore the rest of the statements until the next ] is found
+                    while self.code[index] != ']':
+                        print(self.code[index])
+                        index += 1
+
+            elif char == ']':
+                if len(loop_stack) > 0:
+                    previndex = loop_stack[-1]
+                    if self.memory[ptr] > 0:
+                        index = previndex
+                    else:
+                        loop_stack.pop()
             elif char == '.':
                 sys.stdout.write(chr(self.memory[ptr]))
             index += 1
