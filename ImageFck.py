@@ -2,6 +2,7 @@
 
 import sys,math
 from PIL import Image
+from Brainfck import Brainfck
 
 
 
@@ -13,6 +14,7 @@ class ImageCreator:
         pass
 
     def create_image(self,source):
+        """ Creates ImageFkc source based on BrainF*ck source """
         # use the map in reverse
         global colour_to_bf
         bf_to_colour = dict((v,k) for k,v in list(colour_to_bf.items()))
@@ -36,9 +38,10 @@ class Interpreter:
 
     def __init__(self, file):
         global colour_to_bf
-
         bf = self.read_pixels_as_brainfuck(file)
-        print(bf)
+        bfi = Brainfck.Interpreter(bf)
+        bfi.interpret()
+
 
     def read_pixels_as_brainfuck(self,file):
         global colour_to_bf
