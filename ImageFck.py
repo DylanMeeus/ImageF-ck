@@ -41,7 +41,6 @@ class Interpreter:
         bf = self.read_pixels_as_brainfuck(file)
         bfi = Brainfck.Interpreter(bf)
         bfi.interpret()
-        print(bf)
 
 
     def read_pixels_as_brainfuck(self,file):
