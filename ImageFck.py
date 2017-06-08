@@ -50,10 +50,11 @@ class Interpreter:
         pixels = image.load()
         for r in range(image.size[0]):
             for c in range(image.size[1]):
-               if pixels[c,r] in colour_to_bf:
-                   brainfuck += colour_to_bf[pixels[c,r]]
-               else:
-                   pass # we don't care about any other colours
+                values = (pixels[c,r][0],pixels[c,r][1],pixels[c,r][2])
+                if values in colour_to_bf:
+                    brainfuck += colour_to_bf[values]
+                else:
+                    pass # we don't care about any other colours
         return brainfuck
 
 
@@ -63,10 +64,10 @@ if __name__ == '__main__':
     global colour_to_bf
 
     # create the colour set that we will use
-    # red              #green           #blue           # yellow
+                      # red              #green           #blue           # yellow
     colour_to_bf = {(255,0,0) : '>', (0,255,0) : '.', (0,0,255) : '<', (255,255,0) : '+'
         , (0,255,255) : '-', (255,0,188) : '[', (255,128,0) : ']', (102,0,204) : ','}
-    # cyan            # pink            #orange              #purple
+              # cyan            # pink            #orange              #purple
 
     if len(sys.argv) <= 1:
         print("need to pass a file to interpret!")
