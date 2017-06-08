@@ -1,6 +1,6 @@
 """ interpreter for Brainfuck """
 import sys
-
+import copy
 
 
 class Interpreter:
@@ -10,11 +10,11 @@ class Interpreter:
         self.code = code
 
     def interpret(self):
-        # count the > - < to determine memory locations
-        mem = (self.code.count('>')) # + self.code.count('<')) - (self.code.count('<'))
+        # initial memory estimate
+        mem_estimate = (self.code.count('>'))
         # initialize memory slots
         self.memory = []
-        for m in range(mem+1000000):
+        for m in range(mem_estimate):
             self.memory.append(0)
 
         # run the actual code
@@ -24,6 +24,7 @@ class Interpreter:
         while index < len(self.code):
             char = self.code[index]
             if char == '>':
+                self.ensureCapacity(ptr)
                 ptr += 1
             elif char == '<':
                 ptr -= 1
@@ -56,3 +57,21 @@ class Interpreter:
             elif char == '.':
                 sys.stdout.write(chr(self.memory[ptr]))
             index += 1
+
+
+    def ensureCapacity(self,ptr):
+        """ ensure the current pointer is in the memory limits """
+        if ptr < len(self.memory)-1:
+            return
+        self.expandMemory()
+
+    def expandMemory(self):
+        copymemory = copy.deepcopy(self.memory)
+        oldsize = len(self.memory)
+        newsize = (oldsize * 3) // 2 + 1
+        self.memory = []
+        for x in range(newsize):
+            if x < len(copymemory):
+                self.memory.append(copymemory[x])
+            else:
+                self.memory.append(0)
