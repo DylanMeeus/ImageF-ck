@@ -66,12 +66,8 @@ class Interpreter:
         self.expandMemory()
 
     def expandMemory(self):
-        copymemory = copy.deepcopy(self.memory)
         oldsize = len(self.memory)
         newsize = (oldsize * 3) // 2 + 1
-        self.memory = []
-        for x in range(newsize):
-            if x < len(copymemory):
-                self.memory.append(copymemory[x])
-            else:
-                self.memory.append(0)
+
+        while oldsize < newsize:
+            self.memory.append(0)
