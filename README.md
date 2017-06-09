@@ -16,5 +16,8 @@ In the examples folder you can find some images which you can use to test the pr
 When creating an image for use with Imagefuck, you need to make sure you use a file format that does not deteriorate the image quality. For this I recommend either PNG or BMP.
 
 
+## Imagefuck - Brainfuck Interpreter
 
+The interpret is actually a normal Brainfuck interpreter. All the image-code gets translated to normal brainfuck code, which is then fed to the Brainfuck interpreter that this contains.
+The brainfuck interpreter can at the moment not be used as a stand-alone interpreter but I'll end up changing the source later so this can be done as well if so desired. Though there are numerous other brainfuck interpreters out there. Personally, I recommend `beef`. 
 
