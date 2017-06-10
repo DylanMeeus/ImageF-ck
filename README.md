@@ -15,6 +15,22 @@ In the examples folder you can find some images which you can use to test the pr
 
 When creating an image for use with Imagefuck, you need to make sure you use a file format that does not deteriorate the image quality. For this I recommend either PNG or BMP.
 
+## 'Writing' ImageFuck code
+To create source code for ImageFuck, all you need is to create an image in your favourite image creation program. The only requirement is that it is saved in a file format that is lossless such as PNG.
+
+In ImageFuck, the colour of a pixel corresponds to a specific Brainfuck instruction. The colours that are not in the table below are ignored (as are other symbols in brainfuck). To create 'comments', one would have to write something on the image indicative of a comment.
+
+| Colour (RGB) | Brainfuck |
+----------------------------
+| (255,0,0)    | > |
+| (0,255,0)    | . |
+| (0,0,255)    | < |
+| (255,255,0)  | + |
+| (0,255,255)  | - |
+| (255,0,188)  | [ |
+| (255,128,0)  | ] |
+| (102,0,204)  | , |
+
 
 ## Imagefuck - Brainfuck Interpreter
 
