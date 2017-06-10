@@ -11,7 +11,8 @@ class Interpreter:
 
     def interpret(self):
         # initial memory estimate
-        mem_estimate = (self.code.count('>'))
+        mem_estimate = self.code.count('>') if self.code.count('>') > 0 else 1
+
         # initialize memory slots
         self.memory = []
         for m in range(mem_estimate):
@@ -54,8 +55,14 @@ class Interpreter:
                         index = previndex
                     else:
                         loop_stack.pop()
+
             elif char == '.':
                 sys.stdout.write(chr(self.memory[ptr]))
+
+            elif char == ',':
+                firstbyte = input()[0]
+                self.memory[ptr] = ord(firstbyte)
+
             index += 1
 
 
