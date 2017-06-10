@@ -21,7 +21,7 @@ To create source code for ImageFuck, all you need is to create an image in your 
 In ImageFuck, the colour of a pixel corresponds to a specific Brainfuck instruction. The colours that are not in the table below are ignored (as are other symbols in brainfuck). To create 'comments', one would have to write something on the image indicative of a comment.
 
 | Colour (RGB) | Brainfuck |
-----------------------------
+---------------|:------------:|
 | (255,0,0)    | > |
 | (0,255,0)    | . |
 | (0,0,255)    | < |
