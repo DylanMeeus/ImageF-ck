@@ -48,8 +48,8 @@ class Interpreter:
         image = Image.open(file)
         brainfuck = ''
         pixels = image.load()
-        for r in range(image.size[0]):
-            for c in range(image.size[1]):
+        for r in range(image.size[1]):
+            for c in range(image.size[0]):
                 values = (pixels[c,r][0],pixels[c,r][1],pixels[c,r][2])
                 if values in colour_to_bf:
                     brainfuck += colour_to_bf[values]
